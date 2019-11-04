@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head :: head"></head>
+
+    <body>
+        <div th:replace="fragments/navbar :: navbar"></div>
+
+        <br><br>
+
+        <div class="container">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <th>TVIX</th>
+                    <th>UVXY</th>
+                    <th>VXX</th>
+                    <th>SVXY</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td th:text="${alert.action} ? 'Buy to Open':'Sell to Open'"></td>
+                        <td th:text="${alert.action} ? 'Buy to Open':'Sell to Open'"></td>
+                        <td th:text="${alert.action} ? 'Buy to Open':'Sell to Open'"></td>
+                        <td th:text="!${alert.action} ? 'Buy to Open':'Sell to Open'"></td>
+                    </tr>
+                    <tr>
+                        <td th:text="${alert.getTVIX()}"></td>
+                        <td th:text="${alert.getUVXY()}"></td>
+                        <td th:text="${alert.getVXX()}"></td>
+                        <td th:text="${alert.getSVXY()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a th:href="@{/records/converter}">Back to Price Converter</a>
+        </div>
+
+    </body>
+</html>

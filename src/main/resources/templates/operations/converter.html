@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head :: head"></head>
+
+    <body>
+        <div th:replace="fragments/navbar :: navbar"></div>
+
+        <div class="container">
+
+            <br><br>
+
+            <p class="h4 mb-4">Vol ETF/ETN Price Converter</p>
+            <p class="h4 mb-4" th:text="'Contango: ' + ${contango}"></p>
+
+            <form action="#" th:action="@{/records/converterResult}" method="GET">
+
+                <div class="form-inline">
+
+                    <select class="form-control mb-4 col-4" name="action" required>
+                        <option th:value="true" th:text="'Buy to Open'"></option>
+                        <option th:value="false" th:text="'Sell to Open'"></option>
+                    </select>
+
+                </div>
+
+                <div class="form-inline">
+
+                    <input type="number" step="0.01" min="0" name="alertPrice"
+                           class="form-control mb-4 col-4" placeholder="UVXY Alert Price" required>
+                </div>
+
+
+                <button type="submit" class="btn btn-info col-2">Convert</button>
+
+            </form>
+
+            <hr>
+            <a th:href="@{/records/list}">Back to Transactions</a>
+
+        </div>
+
+    </body>
+</html>

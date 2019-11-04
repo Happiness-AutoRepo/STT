@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org/extras/spring-security ">
+
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+
+    <div th:replace="fragments/navbar :: navbar"></div>
+
+	<div class="container">
+
+		<br><br>
+		
+		<p class="h4 mb-4">Save Trade</p>
+	
+		<form action="#" th:action="@{/records/save}"
+						 th:object="${record}" method="POST">
+		
+			<!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{id}" />
+            <input type="hidden" th:field="*{userId}" />
+
+			<div class="form-inline">
+
+				<select th:field="*{longTrade}" class="form-control mb-4 col-4" required>
+					<option th:value="true" th:text="'Buy to Open'"></option>
+					<option th:value="false" th:text="'Sell to Open'"></option>
+				</select>
+
+			</div>
+			
+			<div class="form-inline">
+			
+				<input type="text" th:field="*{symbol}"
+						class="form-control mb-4 col-4" placeholder="Symbol" required>
+
+				<!-- Add error message (if present) -->
+				<span th:if="${#fields.hasErrors('symbol')}"
+					  th:errors="*{symbol}"
+					  class="badge badge-danger ml-2 mb-4"></span>
+
+			</div>
+			
+			<div class="form-inline">
+			
+				<input type="date" th:placeholder="'Date'" th:field="*{openDate}"
+						class="form-control mb-4 col-4" placeholder="Open Date" required>
+				
+				<!-- Add error message (if present) -->
+				<span th:if="${#fields.hasErrors('openDate')}"
+					  th:errors="*{openDate}"
+					  class="badge badge-danger ml-2 mb-4"></span>
+
+			</div>
+
+			<div class="form-inline">
+
+				<input type="number" step="0.01" min="0" th:field="*{entry}"
+					   class="form-control mb-4 col-4" placeholder="Entry Price" required>
+
+				<!-- Add error message (if present) -->
+				<span th:if="${#fields.hasErrors('entry')}"
+					  th:errors="*{entry}"
+					  class="badge badge-danger ml-2 mb-4"></span>
+
+			</div>
+
+			<div class="form-inline">
+
+				<input type="date" th:placeholder="'Date'" th:field="*{closeDate}"
+					   class="form-control mb-4 col-4" placeholder="Close Date" required>
+
+				<!-- Add error message (if present) -->
+				<span th:if="${#fields.hasErrors('closeDate')}"
+					  th:errors="*{closeDate}"
+					  class="badge badge-danger ml-2 mb-4"></span>
+
+			</div>
+
+			<div class="form-inline">
+
+				<input type="number" step="0.01" min="0" th:field="*{exit}"
+					   class="form-control mb-4 col-4" placeholder="Exit Price" required>
+
+				<!-- Add error message (if present) -->
+				<span th:if="${#fields.hasErrors('exit')}"
+					  th:errors="*{exit}"
+					  class="badge badge-danger ml-2 mb-4"></span>
+
+			</div>
+							
+			<button type="submit" class="btn btn-info col-2">Save</button>
+						
+		</form>
+	
+		<hr>
+		<a th:href="@{/records/list}">Back to Transactions</a>
+		
+	</div>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
